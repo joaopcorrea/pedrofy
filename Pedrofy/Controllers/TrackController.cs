@@ -16,14 +16,13 @@ namespace Pedrofy.Controllers
         public TrackController()
         {
             url = "https://theaudiodb.com/api/v1/json/2/track.php?m=";
-
-
             albums = new string[] { "2337674", "2113944", "2113067", "2281777", };
+
             client = new HttpClient();
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public async Task<ObjectResult> Get()
+        [HttpGet]
+        public async Task<ObjectResult> GetAll([FromQuery]string? filter = "")
         {
             List<Track> tracks = new List<Track>();
 
@@ -41,7 +40,45 @@ namespace Pedrofy.Controllers
                     return BadRequest(response);
             }
             Random rnd = new Random();
-            return Ok(tracks.OrderBy(t => rnd.Next()).ToList());
+            filter = filter.Trim().ToLower();
+            tracks = tracks
+                .OrderBy(t => rnd.Next())
+                .Where(t => t.StrTrack.ToLower().Contains(filter) ||
+                            t.StrArtist.ToLower().Contains(filter) ||
+                            t.StrAlbum.ToLower().Contains(filter))
+                .ToList();
+
+            return Ok(tracks);
+        }
+
+        [HttpGet("history")]
+        public ObjectResult GetHistory()
+        {
+            return Ok("history");
+        }
+
+        [HttpDelete("history/{id}")]
+        public NoContentResult RemoveAtHistory()
+        {
+            return NoContent();
+        }
+
+        [HttpPost("queue")]
+        public ObjectResult AddToQueue()
+        {
+            return Created("", "created");
+        }
+
+        [HttpPost("previous")]
+        public ObjectResult PlayPrevious()
+        {
+            return Ok("previous");
+        }
+
+        [HttpPost("next")]
+        public ObjectResult PlayNext()
+        {
+            return Ok("next");
         }
     }
 }
