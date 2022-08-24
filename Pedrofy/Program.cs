@@ -1,3 +1,5 @@
+using Pedrofy.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,4 +24,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+FileRepository.CheckFiles();
+
 app.Run();
+

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pedrofy.Models;
+using Pedrofy.Repository;
 using System.Text.Json;
 
 namespace Pedrofy.Controllers
@@ -13,12 +14,32 @@ namespace Pedrofy.Controllers
 
         static HttpClient client;
 
+        static Queue<Track> queue;
+        static Stack<Track> stack;
+
+        static Track ActualTrack 
+        { 
+            get
+            {
+                return LazyObjects.ActualTrack.Value;
+            }
+            set 
+            {
+                LazyObjects.ActualTrack = new(() => value);
+
+                if (value?.IdTrack != null) TrackRepository.AddHistory(value);
+            } 
+        }
+
         public TrackController()
-        {
+        { 
             url = "https://theaudiodb.com/api/v1/json/2/track.php?m=";
-            albums = new string[] { "2337674", "2113944", "2113067", "2281777", };
+            albums = new string[] { "2337674", "2113944", "2113067", "2281777" };
 
             client = new HttpClient();
+
+            queue = LazyObjects.TracksQueue.Value;
+            stack = LazyObjects.TracksStack.Value;
         }
 
         [HttpGet]
@@ -48,37 +69,69 @@ namespace Pedrofy.Controllers
                             t.StrAlbum.ToLower().Contains(filter))
                 .ToList();
 
-            return Ok(tracks);
+            if (tracks != null)
+                return Ok(tracks);
+            else
+                return NotFound("");
         }
 
         [HttpGet("history")]
         public ObjectResult GetHistory()
         {
-            return Ok("history");
+            List<TrackHistory> histories;
+            histories = FileRepository.ReadFile<List<TrackHistory>>("history.json");
+
+            if (histories != null)
+                return Ok(histories);
+            else
+                return NotFound("");
         }
 
         [HttpDelete("history/{id}")]
-        public NoContentResult RemoveAtHistory()
+        public NoContentResult RemoveAtHistory(int id)
         {
+            TrackRepository.RemoveHistory(id);
+
             return NoContent();
         }
 
         [HttpPost("queue")]
-        public ObjectResult AddToQueue()
+        public ObjectResult AddToQueue([FromBody]Track track)
         {
-            return Created("", "created");
+            queue.Enqueue(track);
+            return Created(track.IdTrack, track.StrTrack);
         }
 
         [HttpPost("previous")]
         public ObjectResult PlayPrevious()
         {
-            return Ok("previous");
+            if (stack.Count == 0)
+            {
+                return NotFound("");
+            }
+
+            ActualTrack = stack.Pop();
+
+            return Ok(ActualTrack);
         }
 
         [HttpPost("next")]
         public ObjectResult PlayNext()
         {
-            return Ok("next");
+            if (ActualTrack?.IdTrack != null)
+                stack.Push(ActualTrack);
+
+            if (queue.Count == 0)
+            {
+                ActualTrack = null;
+                return NotFound(ActualTrack);
+            }
+
+            var next = queue.Dequeue();
+
+            ActualTrack = next;
+
+            return Ok(ActualTrack);
         }
     }
 }
