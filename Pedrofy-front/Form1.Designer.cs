@@ -32,6 +32,7 @@ namespace Pedrofy_front
         {
             this.components = new System.ComponentModel.Container();
             this.pnlMusic = new System.Windows.Forms.Panel();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.pbMusicTimer = new Pedrofy_front.Components.CustomProgressBar();
             this.lblTotalMinutes = new System.Windows.Forms.Label();
             this.lblActualMinutes = new System.Windows.Forms.Label();
@@ -39,7 +40,9 @@ namespace Pedrofy_front
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.timerMusic = new System.Windows.Forms.Timer(this.components);
-            this.btnPlay = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlMusic.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,10 +62,24 @@ namespace Pedrofy_front
             this.pnlMusic.Controls.Add(this.btnPause);
             this.pnlMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.pnlMusic.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pnlMusic.Location = new System.Drawing.Point(-5, 457);
+            this.pnlMusic.Location = new System.Drawing.Point(-5, 612);
             this.pnlMusic.Name = "pnlMusic";
             this.pnlMusic.Size = new System.Drawing.Size(685, 125);
             this.pnlMusic.TabIndex = 0;
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlay.BackgroundImage = global::Pedrofy_front.Properties.Resources.play_icon;
+            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPlay.FlatAppearance.BorderSize = 0;
+            this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlay.Location = new System.Drawing.Point(334, 8);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(50, 50);
+            this.btnPlay.TabIndex = 7;
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // pbMusicTimer
             // 
@@ -143,26 +160,46 @@ namespace Pedrofy_front
             this.timerMusic.Interval = 1000;
             this.timerMusic.Tick += new System.EventHandler(this.timerMusic_Tick);
             // 
-            // btnPlay
+            // lblTitle
             // 
-            this.btnPlay.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlay.BackgroundImage = global::Pedrofy_front.Properties.Resources.play_icon;
-            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPlay.FlatAppearance.BorderSize = 0;
-            this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlay.Location = new System.Drawing.Point(334, 8);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(50, 50);
-            this.btnPlay.TabIndex = 7;
-            this.btnPlay.UseVisualStyleBackColor = true;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Gotham", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(215)))), ((int)(((byte)(98)))));
+            this.lblTitle.Location = new System.Drawing.Point(84, 19);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(215, 54);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "Pedrofy";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Gotham", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(215)))), ((int)(((byte)(98)))));
+            this.label1.Location = new System.Drawing.Point(284, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 16);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "®";
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Pedrofy_front.Properties.Resources.spotify_logo;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(70, 70);
+            this.panel1.TabIndex = 3;
             // 
             // formPedrofy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
-            this.ClientSize = new System.Drawing.Size(679, 574);
+            this.ClientSize = new System.Drawing.Size(679, 729);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pnlMusic);
             this.Name = "formPedrofy";
             this.Text = "Pedrofy";
@@ -170,6 +207,7 @@ namespace Pedrofy_front
             this.pnlMusic.ResumeLayout(false);
             this.pnlMusic.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -184,5 +222,8 @@ namespace Pedrofy_front
         private CustomProgressBar pbMusicTimer;
         private System.Windows.Forms.Timer timerMusic;
         private Button btnPlay;
+        private Label lblTitle;
+        private Label label1;
+        private Panel panel1;
     }
 }
