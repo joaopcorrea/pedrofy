@@ -87,6 +87,18 @@ namespace Pedrofy.Controllers
                 return NotFound("");
         }
 
+        [HttpGet("stats")]
+        public ObjectResult GetStats()
+        {
+            Stats stats;
+            stats = TrackRepository.GetStats();
+
+            if (stats != null)
+                return Ok(stats);
+            else
+                return NotFound("");
+        }
+
         [HttpDelete("history/{id}")]
         public NoContentResult RemoveAtHistory(int id)
         {
