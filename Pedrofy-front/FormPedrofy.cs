@@ -73,6 +73,11 @@ namespace Pedrofy_front
                 var content = await response.Content.ReadAsStringAsync();
                 actualTrack = JsonSerializer.Deserialize<Track>(content);
                 player.URL = $@"C:\Users\joaop\Documents\albums\{actualTrack.IdAlbum}\{actualTrack.IdTrack}.mp3";
+
+                actualSeconds = 0;
+                btnPlay.Visible = false;
+                btnPause.Visible = true;
+                timerMusic.Start();
             }
             else
             {
@@ -116,8 +121,8 @@ namespace Pedrofy_front
             if (!string.IsNullOrEmpty(actualTrack.IdAlbum))
                 pnlAlbum.BackgroundImage = Image.FromFile($"../../../Assets/Images/Albums/{actualTrack.IdAlbum}.jpg");
 
-            lblTotalMinutes.Text = $"{Convert.ToInt32(actualTrack.IntDuration)/60}:{Convert.ToInt32(actualTrack.IntDuration) %60}";
-            lblActualMinutes.Text = $"{actualSeconds / 60}:{actualSeconds % 60}";
+            lblTotalMinutes.Text = $"{Convert.ToInt32(actualTrack.IntDuration)/60000}:{Convert.ToInt32(actualTrack.IntDuration) %60000:00}";
+            lblActualMinutes.Text = $"{actualSeconds / 60}:{actualSeconds % 60:00}";
             FillMusicProgressBar();
         }
 
@@ -125,7 +130,7 @@ namespace Pedrofy_front
         {
             if (!string.IsNullOrEmpty(actualTrack.IntDuration))
             {
-                int value = Convert.ToInt32(100.0 * actualSeconds / Convert.ToInt32(actualTrack.IntDuration));
+                int value = Convert.ToInt32(100.0 * actualSeconds / (Convert.ToInt32(actualTrack.IntDuration)/1000));
                 if (value < 0) value = 0;
                 if (value > 100) value = 100;
                 pbMusicTimer.Value = value;

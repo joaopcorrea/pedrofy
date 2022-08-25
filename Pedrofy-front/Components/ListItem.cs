@@ -46,7 +46,14 @@ namespace Pedrofy_front.Components
         [Category("Custom Props")]
         public string Album { get => album; set { album = value; lblAlbum.Text = value; } }
         [Category("Custom Props")]
-        public string Duration { get => duration; set { duration = value; lblMinutes.Text = value; } }
+        public string Duration { get => duration; set 
+            { 
+                duration = value;
+
+                int seconds = (int)Math.Floor(Convert.ToInt32(value) / 1000.0);
+
+                lblMinutes.Text = $"{Convert.ToInt32(seconds) / 60}:{Convert.ToInt32(seconds) % 60:00}";
+            } }
 
         private void ListItem_MouseEnter(object sender, EventArgs e)
         {
@@ -55,7 +62,7 @@ namespace Pedrofy_front.Components
 
         private void ListItem_MouseLeave(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(12, 12, 12);
+            this.BackColor = Color.FromArgb(15, 15, 15);
         }
 
         private async void btnAddQueue_Click(object sender, EventArgs e)
@@ -76,6 +83,11 @@ namespace Pedrofy_front.Components
 
 
             var response = await client.SendAsync(requestMessage);
+        }
+
+        private void btnAddQueue_MouseEnter(object sender, EventArgs e)
+        {
+            btnAddQueue.BackColor = Color.Transparent; 
         }
     }
 }
