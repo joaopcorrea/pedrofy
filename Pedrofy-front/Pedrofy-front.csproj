@@ -24,8 +24,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Assets\Images\" />
-  </ItemGroup>
-
 </Project>

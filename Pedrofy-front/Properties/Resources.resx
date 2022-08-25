@@ -121,16 +121,22 @@
   <data name="next-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\next-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="play-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Images\play-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pause-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Images\pause-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="2281777" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\albums\2281777.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="previous-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\previous-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pause-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\pause-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="spotify-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\spotify-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="play-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\play-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2337674" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\albums\2337674.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

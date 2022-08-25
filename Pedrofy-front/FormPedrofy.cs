@@ -1,13 +1,26 @@
+using Pedrofy_front.Components;
+using Pedrofy_front.Models;
+using System.Text.Json;
+
 namespace Pedrofy_front
 {
-    public partial class formPedrofy : Form
+    public partial class FormPedrofy : Form
     {
         int totalSeconds = 220;
         int actualSeconds = 0;
 
-        public formPedrofy()
+        string url;
+
+        static HttpClient client;
+
+        public FormPedrofy()
         {
             InitializeComponent();
+
+            client = new HttpClient();
+
+            url = "https://localhost:7124/track";
+
             SyncInterface();
 
             btnPause.Visible = false;
@@ -30,9 +43,31 @@ namespace Pedrofy_front
 
         }
 
-        private void formPedrofy_Load(object sender, EventArgs e)
+        private async void formPedrofy_Load(object sender, EventArgs e)
         {
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var tracks = JsonSerializer.Deserialize<List<Track>>(json);
 
+                foreach (var track in tracks)
+                {
+                    pnlList.Controls.Add(new ListItem()
+                    {
+                        IdTrack = track.IdTrack,
+                        IdAlbum = track.IdAlbum,
+                        Track = track.StrTrack,
+                        Artist = track.StrArtist,
+                        Album = track.StrAlbum,
+                        Duration = track.IntDuration
+                    });
+                }
+            }
+            else
+                throw new Exception("erro");
+
+            
         }
 
         private void SyncInterface()
