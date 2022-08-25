@@ -99,6 +99,7 @@
             this.btnAddQueue.TabIndex = 5;
             this.btnAddQueue.Text = "+";
             this.btnAddQueue.UseVisualStyleBackColor = true;
+            this.btnAddQueue.Click += new System.EventHandler(this.btnAddQueue_Click);
             // 
             // ListItem
             // 

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Pedrofy_front.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,9 +21,13 @@ namespace Pedrofy_front.Components
         private string album;
         private string duration;
 
+        static HttpClient client;
+
         public ListItem()
         {
             InitializeComponent();
+
+            client = new HttpClient();
         }
 
         public string IdTrack { get => idTrack; set => idTrack = value; }
@@ -50,6 +56,26 @@ namespace Pedrofy_front.Components
         private void ListItem_MouseLeave(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(12, 12, 12);
+        }
+
+        private async void btnAddQueue_Click(object sender, EventArgs e)
+        {
+            Track track = new Track()
+            {
+                IdTrack = IdTrack,
+                IdAlbum = IdAlbum,
+                StrTrack = Track,
+                StrArtist = Artist,
+                StrAlbum = Album,
+                IntDuration = Duration,
+            };
+
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7124/track/queue");
+
+            requestMessage.Content = JsonContent.Create(track);
+
+
+            var response = await client.SendAsync(requestMessage);
         }
     }
 }

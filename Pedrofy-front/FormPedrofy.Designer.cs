@@ -34,7 +34,7 @@ namespace Pedrofy_front
             this.pnlMusic = new System.Windows.Forms.Panel();
             this.lblArtist = new System.Windows.Forms.Label();
             this.lblTrack = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlAlbum = new System.Windows.Forms.Panel();
             this.btnPlay = new System.Windows.Forms.Button();
             this.pbMusicTimer = new Pedrofy_front.Components.CustomProgressBar();
             this.lblTotalMinutes = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@ namespace Pedrofy_front
             this.pnlMusic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlMusic.Controls.Add(this.lblArtist);
             this.pnlMusic.Controls.Add(this.lblTrack);
-            this.pnlMusic.Controls.Add(this.panel2);
+            this.pnlMusic.Controls.Add(this.pnlAlbum);
             this.pnlMusic.Controls.Add(this.btnPlay);
             this.pnlMusic.Controls.Add(this.pbMusicTimer);
             this.pnlMusic.Controls.Add(this.lblTotalMinutes);
@@ -98,14 +98,13 @@ namespace Pedrofy_front
             this.lblTrack.TabIndex = 8;
             this.lblTrack.Text = "I Don\'t Know Why";
             // 
-            // panel2
+            // pnlAlbum
             // 
-            this.panel2.BackgroundImage = global::Pedrofy_front.Properties.Resources._2281777;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(25, 25);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(70, 70);
-            this.panel2.TabIndex = 4;
+            this.pnlAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlAlbum.Location = new System.Drawing.Point(25, 25);
+            this.pnlAlbum.Name = "pnlAlbum";
+            this.pnlAlbum.Size = new System.Drawing.Size(70, 70);
+            this.pnlAlbum.TabIndex = 4;
             // 
             // btnPlay
             // 
@@ -291,7 +290,7 @@ namespace Pedrofy_front
         private Label lblTitle;
         private Label label1;
         private Panel panel1;
-        private Panel panel2;
+        private Panel pnlAlbum;
         private Label lblArtist;
         private Label lblTrack;
         private FlowLayoutPanel pnlList;
