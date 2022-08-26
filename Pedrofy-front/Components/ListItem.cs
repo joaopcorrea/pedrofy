@@ -83,6 +83,8 @@ namespace Pedrofy_front.Components
 
 
             var response = await client.SendAsync(requestMessage);
+
+            MessageBox.Show("Música adicionada na fila!");
         }
 
         private void btnAddQueue_MouseEnter(object sender, EventArgs e)

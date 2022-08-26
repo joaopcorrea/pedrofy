@@ -58,14 +58,12 @@ namespace Pedrofy_front.Components
 			{
 				if (value < _Minimum)
 				{
-					throw new ArgumentException("'" + value + "' is not a valid value for 'Value'.\n" +
-						"'Value' must be between 'Minimum' and 'Maximum'.");
+					value = _Minimum;
 				}
 
 				if (value > _Maximum)
 				{
-					throw new ArgumentException("'" + value + "' is not a valid value for 'Value'.\n" +
-						"'Value' must be between 'Minimum' and 'Maximum'.");
+					value = _Maximum;
 				}
 
 				_Value = value;

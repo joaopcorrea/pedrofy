@@ -32,6 +32,8 @@ namespace Pedrofy_front
         {
             this.components = new System.ComponentModel.Container();
             this.pnlMusic = new System.Windows.Forms.Panel();
+            this.pbVolume = new Pedrofy_front.Components.CustomProgressBar();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblArtist = new System.Windows.Forms.Label();
             this.lblTrack = new System.Windows.Forms.Label();
             this.pnlAlbum = new System.Windows.Forms.Panel();
@@ -52,7 +54,7 @@ namespace Pedrofy_front
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -63,6 +65,7 @@ namespace Pedrofy_front
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.pnlMusic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,6 +79,8 @@ namespace Pedrofy_front
             this.pnlMusic.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlMusic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.pnlMusic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlMusic.Controls.Add(this.pbVolume);
+            this.pnlMusic.Controls.Add(this.pictureBox3);
             this.pnlMusic.Controls.Add(this.lblArtist);
             this.pnlMusic.Controls.Add(this.lblTrack);
             this.pnlMusic.Controls.Add(this.pnlAlbum);
@@ -88,82 +93,103 @@ namespace Pedrofy_front
             this.pnlMusic.Controls.Add(this.btnPause);
             this.pnlMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.pnlMusic.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pnlMusic.Location = new System.Drawing.Point(-5, 604);
+            this.pnlMusic.Location = new System.Drawing.Point(-1, 604);
             this.pnlMusic.Name = "pnlMusic";
-            this.pnlMusic.Size = new System.Drawing.Size(896, 125);
+            this.pnlMusic.Size = new System.Drawing.Size(886, 118);
             this.pnlMusic.TabIndex = 0;
+            // 
+            // pbVolume
+            // 
+            this.pbVolume.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbVolume.BackColor = System.Drawing.Color.Black;
+            this.pbVolume.BorderColor = System.Drawing.Color.Transparent;
+            this.pbVolume.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbVolume.Location = new System.Drawing.Point(747, 54);
+            this.pbVolume.Name = "pbVolume";
+            this.pbVolume.Size = new System.Drawing.Size(108, 5);
+            this.pbVolume.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pbVolume.TabIndex = 11;
+            this.pbVolume.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbVolume_MouseDown);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox3.BackgroundImage = global::Pedrofy_front.Properties.Resources.sound_icon;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(718, 46);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox3.TabIndex = 10;
+            this.pictureBox3.TabStop = false;
             // 
             // lblArtist
             // 
-            this.lblArtist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblArtist.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblArtist.Font = new System.Drawing.Font("Gotham", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblArtist.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
-            this.lblArtist.Location = new System.Drawing.Point(101, 61);
+            this.lblArtist.Location = new System.Drawing.Point(101, 66);
             this.lblArtist.Name = "lblArtist";
-            this.lblArtist.Size = new System.Drawing.Size(140, 15);
+            this.lblArtist.Size = new System.Drawing.Size(128, 15);
             this.lblArtist.TabIndex = 9;
             this.lblArtist.Text = "Imagine Dragons";
             // 
             // lblTrack
             // 
-            this.lblTrack.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTrack.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTrack.Font = new System.Drawing.Font("Gotham", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTrack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.lblTrack.Location = new System.Drawing.Point(100, 36);
+            this.lblTrack.Location = new System.Drawing.Point(101, 39);
             this.lblTrack.Name = "lblTrack";
-            this.lblTrack.Size = new System.Drawing.Size(187, 20);
+            this.lblTrack.Size = new System.Drawing.Size(175, 20);
             this.lblTrack.TabIndex = 8;
             this.lblTrack.Text = "I Don\'t Know Why";
             // 
             // pnlAlbum
             // 
+            this.pnlAlbum.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pnlAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlAlbum.Location = new System.Drawing.Point(25, 25);
+            this.pnlAlbum.Location = new System.Drawing.Point(24, 24);
             this.pnlAlbum.Name = "pnlAlbum";
             this.pnlAlbum.Size = new System.Drawing.Size(70, 70);
             this.pnlAlbum.TabIndex = 4;
             // 
             // btnPlay
             // 
-            this.btnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPlay.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPlay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnPlay.BackColor = System.Drawing.Color.Transparent;
             this.btnPlay.BackgroundImage = global::Pedrofy_front.Properties.Resources.play_icon;
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPlay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPlay.FlatAppearance.BorderSize = 0;
+            this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlay.Location = new System.Drawing.Point(417, 8);
+            this.btnPlay.Location = new System.Drawing.Point(421, 24);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(51, 50);
+            this.btnPlay.Size = new System.Drawing.Size(40, 40);
             this.btnPlay.TabIndex = 7;
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             // 
             // pbMusicTimer
             // 
-            this.pbMusicTimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbMusicTimer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbMusicTimer.BackColor = System.Drawing.Color.Black;
             this.pbMusicTimer.BorderColor = System.Drawing.Color.Transparent;
             this.pbMusicTimer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbMusicTimer.Location = new System.Drawing.Point(292, 77);
+            this.pbMusicTimer.Location = new System.Drawing.Point(299, 83);
             this.pbMusicTimer.Name = "pbMusicTimer";
-            this.pbMusicTimer.Size = new System.Drawing.Size(301, 5);
+            this.pbMusicTimer.Size = new System.Drawing.Size(289, 5);
             this.pbMusicTimer.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pbMusicTimer.TabIndex = 6;
+            this.pbMusicTimer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbMusicTimer_MouseDown);
             // 
             // lblTotalMinutes
             // 
-            this.lblTotalMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalMinutes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTotalMinutes.Font = new System.Drawing.Font("Gotham", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTotalMinutes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
-            this.lblTotalMinutes.Location = new System.Drawing.Point(599, 72);
+            this.lblTotalMinutes.Location = new System.Drawing.Point(597, 78);
             this.lblTotalMinutes.Name = "lblTotalMinutes";
             this.lblTotalMinutes.Size = new System.Drawing.Size(37, 15);
             this.lblTotalMinutes.TabIndex = 5;
@@ -171,11 +197,10 @@ namespace Pedrofy_front
             // 
             // lblActualMinutes
             // 
-            this.lblActualMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblActualMinutes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblActualMinutes.Font = new System.Drawing.Font("Gotham", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblActualMinutes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
-            this.lblActualMinutes.Location = new System.Drawing.Point(250, 72);
+            this.lblActualMinutes.Location = new System.Drawing.Point(256, 78);
             this.lblActualMinutes.Name = "lblActualMinutes";
             this.lblActualMinutes.Size = new System.Drawing.Size(37, 15);
             this.lblActualMinutes.TabIndex = 4;
@@ -183,58 +208,55 @@ namespace Pedrofy_front
             // 
             // btnNext
             // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.BackColor = System.Drawing.Color.Transparent;
             this.btnNext.BackgroundImage = global::Pedrofy_front.Properties.Resources.next_icon;
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNext.Location = new System.Drawing.Point(490, 13);
+            this.btnNext.Location = new System.Drawing.Point(477, 29);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(46, 40);
+            this.btnNext.Size = new System.Drawing.Size(40, 30);
             this.btnNext.TabIndex = 2;
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            this.btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPrevious.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnPrevious.BackColor = System.Drawing.Color.Transparent;
             this.btnPrevious.BackgroundImage = global::Pedrofy_front.Properties.Resources.previous_icon;
             this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrevious.Location = new System.Drawing.Point(347, 13);
+            this.btnPrevious.Location = new System.Drawing.Point(365, 29);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(46, 40);
+            this.btnPrevious.Size = new System.Drawing.Size(40, 30);
             this.btnPrevious.TabIndex = 1;
             this.btnPrevious.UseVisualStyleBackColor = true;
             this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             // 
             // btnPause
             // 
-            this.btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPause.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPause.BackColor = System.Drawing.Color.Transparent;
             this.btnPause.BackgroundImage = global::Pedrofy_front.Properties.Resources.pause_icon;
             this.btnPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPause.FlatAppearance.BorderSize = 0;
+            this.btnPause.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPause.Location = new System.Drawing.Point(417, 8);
+            this.btnPause.Location = new System.Drawing.Point(421, 24);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(51, 50);
+            this.btnPause.Size = new System.Drawing.Size(40, 40);
             this.btnPause.TabIndex = 0;
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
-            this.btnPause.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             // 
             // timerMusic
             // 
@@ -336,22 +358,22 @@ namespace Pedrofy_front
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label2.Font = new System.Drawing.Font("Gotham", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.label2.Location = new System.Drawing.Point(18, 13);
+            this.label2.Location = new System.Drawing.Point(5, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(268, 54);
             this.label2.TabIndex = 5;
             this.label2.Text = "Biblioteca";
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Gotham", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
-            this.textBox1.Location = new System.Drawing.Point(568, 100);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 19);
-            this.textBox1.TabIndex = 6;
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearch.Font = new System.Drawing.Font("Gotham", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
+            this.txtSearch.Location = new System.Drawing.Point(573, 100);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(181, 19);
+            this.txtSearch.TabIndex = 6;
             // 
             // label6
             // 
@@ -420,7 +442,7 @@ namespace Pedrofy_front
             // 
             this.pictureBox1.BackgroundImage = global::Pedrofy_front.Properties.Resources.search_icon;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(546, 102);
+            this.pictureBox1.Location = new System.Drawing.Point(552, 100);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
             this.pictureBox1.TabIndex = 12;
@@ -452,11 +474,13 @@ namespace Pedrofy_front
             this.btnSearch.TabIndex = 14;
             this.btnSearch.Text = "BUSCAR";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // FormPedrofy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(884, 721);
             this.Controls.Add(this.btnSearch);
@@ -466,15 +490,18 @@ namespace Pedrofy_front
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.pnlList);
             this.Controls.Add(this.pnlMusic);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormPedrofy";
             this.Text = "Pedrofy";
             this.Load += new System.EventHandler(this.formPedrofy_Load);
             this.pnlMusic.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -509,7 +536,7 @@ namespace Pedrofy_front
         private Label label4;
         private Label label3;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txtSearch;
         private Label label6;
         private Label label7;
         private Label label8;
@@ -519,5 +546,7 @@ namespace Pedrofy_front
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Button btnSearch;
+        private PictureBox pictureBox3;
+        private CustomProgressBar pbVolume;
     }
 }

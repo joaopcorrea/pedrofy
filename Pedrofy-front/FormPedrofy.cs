@@ -34,6 +34,7 @@ namespace Pedrofy_front
 
             player = new WMPLib.WindowsMediaPlayer();
 
+            pbVolume.Value = player.settings.volume;
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -153,6 +154,60 @@ namespace Pedrofy_front
             timerMusic.Start();
 
             player.controls.play();
+        }
+
+        private void pbMusicTimer_MouseDown(object sender, MouseEventArgs e)
+        {
+            float absoluteMouse = (PointToClient(MousePosition).X - pbMusicTimer.Bounds.X);
+            float calcFactor = pbMusicTimer.Width / (float)pbMusicTimer.Maximum;
+            float relativeMouse = absoluteMouse / calcFactor;
+
+            pbMusicTimer.Value = Convert.ToInt32(relativeMouse);
+
+
+            int totalSeconds = Convert.ToInt32(actualTrack.IntDuration) / 1000;
+
+            actualSeconds = pbMusicTimer.Value * totalSeconds / 100;
+
+            player.controls.currentPosition = actualSeconds;
+        }
+
+        private void pbVolume_MouseDown(object sender, MouseEventArgs e)
+        {
+            float absoluteMouse = (PointToClient(MousePosition).X - pbVolume.Bounds.X);
+            float calcFactor = pbVolume.Width / (float)pbVolume.Maximum;
+            float relativeMouse = absoluteMouse / calcFactor;
+
+            pbVolume.Value = Convert.ToInt32(relativeMouse);
+
+            player.settings.volume = pbVolume.Value;
+        }
+
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            pnlList.Controls.Clear();
+
+            var response = await client.GetAsync(url+"?filter="+txtSearch.Text);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var tracks = JsonSerializer.Deserialize<List<Track>>(json);
+
+                foreach (var track in tracks)
+                {
+                    pnlList.Controls.Add(new ListItem()
+                    {
+                        IdTrack = track.IdTrack,
+                        IdAlbum = track.IdAlbum,
+                        Track = track.StrTrack,
+                        Artist = track.StrArtist,
+                        Album = track.StrAlbum,
+                        Duration = track.IntDuration
+                    });
+                }
+            }
+            else
+                throw new Exception("erro");
         }
     }
 }
