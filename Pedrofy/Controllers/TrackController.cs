@@ -2,6 +2,7 @@
 using Pedrofy.Models;
 using Pedrofy.Repository;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace Pedrofy.Controllers
 {
@@ -32,8 +33,9 @@ namespace Pedrofy.Controllers
         }
 
         public TrackController()
-        { 
-            url = "https://theaudiodb.com/api/v1/json/2/track.php?m=";
+        {
+            var app = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("BaseUrlApi");
+            url = app.Value;
             albums = new string[] { "2337674", "2113944", "2113067", "2281777" };
 
             client = new HttpClient();

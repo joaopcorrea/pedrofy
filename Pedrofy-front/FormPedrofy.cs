@@ -72,23 +72,30 @@ namespace Pedrofy_front
 
                     var tracks = await repository.GetAsync<List<Track>>(filter);
 
-                    foreach (var track in tracks)
+                    if (tracks != null)
                     {
-                        pnlList.Invoke((MethodInvoker)delegate
+                        foreach (var track in tracks)
                         {
-                            pnlList.Controls.Add(new LibraryListItem()
+                            pnlList.Invoke((MethodInvoker)delegate
                             {
-                                IdTrack = track.IdTrack,
-                                IdAlbum = track.IdAlbum,
-                                Track = track.StrTrack,
-                                Artist = track.StrArtist,
-                                Album = track.StrAlbum,
-                                Duration = track.IntDuration
+                                pnlList.Controls.Add(new LibraryListItem()
+                                {
+                                    IdTrack = track.IdTrack,
+                                    IdAlbum = track.IdAlbum,
+                                    Track = track.StrTrack,
+                                    Artist = track.StrArtist,
+                                    Album = track.StrAlbum,
+                                    Duration = track.IntDuration
+                                });
                             });
-                        });
-                    }
+                        }
 
-                    lblHistoryCount.Invoke((MethodInvoker) delegate() { lblTrackCount.Text = $"{tracks.Count} músicas"; });
+                        lblHistoryCount.Invoke((MethodInvoker)delegate () { lblTrackCount.Text = $"{tracks.Count} músicas"; });
+                    }
+                    else
+                    {
+                        throw new Exception("Não foi possível retornar as músicas");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -196,7 +203,10 @@ namespace Pedrofy_front
         {
             currentTrack = track;
 
-            player.URL = $@"..\..\..\Assets\Tracks\Albums\{currentTrack.IdAlbum}\{currentTrack.IdTrack}.mp3";
+            var workingDirectory = Environment.CurrentDirectory;
+            var projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+
+            player.URL = $@"{projectDirectory}\Assets\Tracks\Albums\{currentTrack.IdAlbum}\{currentTrack.IdTrack}.mp3";
             currentSeconds = 0;
         }
         private void SyncInterface()
@@ -206,8 +216,11 @@ namespace Pedrofy_front
                 lblCurrentTrack.Text = currentTrack.StrTrack;
                 lblCurrentArtist.Text = currentTrack.StrArtist;
 
+                var workingDirectory = Environment.CurrentDirectory;
+                var projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+
                 if (!string.IsNullOrEmpty(currentTrack.IdAlbum))
-                    pnlCurrentAlbum.BackgroundImage = Image.FromFile($"../../../Assets/Images/Albums/{currentTrack.IdAlbum}.jpg");
+                    pnlCurrentAlbum.BackgroundImage = Image.FromFile($"{projectDirectory}/Assets/Images/Albums/{currentTrack.IdAlbum}.jpg");
                 else
                     pnlCurrentAlbum.BackgroundImage = null;
 
