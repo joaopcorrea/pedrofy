@@ -60,14 +60,27 @@ namespace Pedrofy.Controllers
                 else
                     return BadRequest(response);
             }
+
             Random rnd = new Random();
             filter = filter.Trim().ToLower();
-            tracks = tracks
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                tracks = tracks
+                    .OrderBy(t => rnd.Next())
+                    .Where(t => t.StrTrack.ToLower().Contains(filter) ||
+                                t.StrArtist.ToLower().Contains(filter) ||
+                                t.StrAlbum.ToLower().Contains(filter))
+                    .Select(t => { t.IntDuration = (Convert.ToInt32(t.IntDuration) / 1000).ToString(); return t; })
+                    .ToList();
+            }
+            else
+            {
+                tracks = tracks
                 .OrderBy(t => rnd.Next())
-                .Where(t => t.StrTrack.ToLower().Contains(filter) ||
-                            t.StrArtist.ToLower().Contains(filter) ||
-                            t.StrAlbum.ToLower().Contains(filter))
+                .Select(t => { t.IntDuration = (Convert.ToInt32(t.IntDuration) / 1000).ToString(); return t; })
                 .ToList();
+            }
 
             if (tracks != null)
                 return Ok(tracks);
@@ -82,7 +95,7 @@ namespace Pedrofy.Controllers
             histories = FileRepository.ReadFile<List<TrackHistory>>("history.json");
 
             if (histories != null)
-                return Ok(histories);
+                return Ok(histories.OrderByDescending(t => t.IdHistory).ToList());
             else
                 return NotFound("");
         }

@@ -1,4 +1,5 @@
 ﻿using Pedrofy_front.Models;
+using Pedrofy_front.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Pedrofy_front.Components
 {
-    public partial class ListItem : UserControl
+    public partial class LibraryListItem : UserControl
     {
         private string idTrack;
         private string idAlbum;
@@ -21,13 +22,13 @@ namespace Pedrofy_front.Components
         private string album;
         private string duration;
 
-        static HttpClient client;
+        Repository repository;
 
-        public ListItem()
+        public LibraryListItem()
         {
             InitializeComponent();
 
-            client = new HttpClient();
+            repository = new Repository();
         }
 
         public string IdTrack { get => idTrack; set => idTrack = value; }
@@ -50,9 +51,9 @@ namespace Pedrofy_front.Components
             { 
                 duration = value;
 
-                int seconds = (int)Math.Floor(Convert.ToInt32(value) / 1000.0);
+                var seconds = Convert.ToInt32(value);
 
-                lblMinutes.Text = $"{Convert.ToInt32(seconds) / 60}:{Convert.ToInt32(seconds) % 60:00}";
+                lblMinutes.Text = $"{seconds / 60}:{seconds % 60:00}";
             } }
 
         private void ListItem_MouseEnter(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace Pedrofy_front.Components
 
         private async void btnAddQueue_Click(object sender, EventArgs e)
         {
-            Track track = new Track()
+            var track = new Track()
             {
                 IdTrack = IdTrack,
                 IdAlbum = IdAlbum,
@@ -77,14 +78,12 @@ namespace Pedrofy_front.Components
                 IntDuration = Duration,
             };
 
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7124/track/queue");
+            var response = await repository.PostAsync("queue", track);
 
-            requestMessage.Content = JsonContent.Create(track);
-
-
-            var response = await client.SendAsync(requestMessage);
-
-            MessageBox.Show("Música adicionada na fila!");
+            if (response)
+                MessageBox.Show("Música adicionada na fila!");
+            else
+                MessageBox.Show("Não foi possível adicionar música na fila!");
         }
 
         private void btnAddQueue_MouseEnter(object sender, EventArgs e)

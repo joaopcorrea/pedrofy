@@ -1,6 +1,6 @@
 ﻿namespace Pedrofy_front.Components
 {
-    partial class ListItem
+    partial class LibraryListItem
     {
         /// <summary> 
         /// Required designer variable.

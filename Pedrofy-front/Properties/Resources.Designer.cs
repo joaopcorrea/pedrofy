@@ -103,6 +103,16 @@ namespace Pedrofy_front.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap library_icon {
+            get {
+                object obj = ResourceManager.GetObject("library-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap next_icon {
             get {
                 object obj = ResourceManager.GetObject("next-icon", resourceCulture);
@@ -166,6 +176,16 @@ namespace Pedrofy_front.Properties {
         internal static System.Drawing.Bitmap spotify_logo {
             get {
                 object obj = ResourceManager.GetObject("spotify-logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap trash_icon {
+            get {
+                object obj = ResourceManager.GetObject("trash-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

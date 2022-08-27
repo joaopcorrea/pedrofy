@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <Folder Include="Assets\Tracks\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>
