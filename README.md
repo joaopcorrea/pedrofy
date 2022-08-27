@@ -2,7 +2,7 @@
 --------------
 ## ⚠ Important stuff ⚠
 
-> Install the [fonts](https://github.com/joaopcorrea/pedrofy/blob/main/Spotify-Font.zip) to a prettier project 😄
+> Install the [fonts](https://github.com/joaopcorrea/pedrofy/blob/main/Spotify-Font.zip) for a prettier project 😄
 
 
 > Run both projects (`Pedrofy` and `Pedrofy-front`) at the same time ⌛
